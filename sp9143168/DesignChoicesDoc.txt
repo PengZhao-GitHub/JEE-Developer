@@ -1,0 +1,16 @@
+Design Choices
+==============
+
+1)RMI vs. Serialized objects
+  The reason I choose using serialized objects over TCP socket is that I think 
+serialized objects over TCP socket is good enough for this application, which 
+can be quickly implemented, tested and deployed in this case. 
+
+2)Modifying vs. Extending the Data class
+  The main reason I choose to modify the Data class is I'd like to add a 
+database service interface and let the Data class implement the interface.
+  The database service interface gives a clear interface between database 
+server and the client. And writing only the abstraction first helps to 
+determine what actions and class relations are necessay on both client and 
+server. Actually I used the database service interface as a start point to 
+implement the client side and the server side.

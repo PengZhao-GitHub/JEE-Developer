@@ -1,0 +1,153 @@
+Flights Seats Booking System User Guide
+=======================================
+[NOTE] Please read the readme.txt first.
+
+********************************************************************************
+*                               GUI client guide                               *
+********************************************************************************
+
+1.How to setup
+
+   Copy the scjdClient.jar and the db.db file to any directory you want.
+
+2.How to run
+
+   Enter the directory which has the scjdClient.jar file. And then you have
+three choices to start the client program.
+
+(1) java -cp scjdClient.jar suncertify.client.Client
+
+[NOTE] If you choose to use this start type. The client is started with no 
+database connection. And you could setup the database location by the option 
+menu, then select the connection mode you want.
+
+(2) java -cp scjdClient.jar suncertify.client.Client db_path
+
+[NOTE] If you choose to use the this start type. Your program will run by using
+the local database. If your db.db file is not the same direcotry with the 
+scjdClient.jar. you must input the full path of the db.db file.
+eg.
+   java -cp scjdClient.jar suncertify.client.ClientApp c:\mywork\db.db
+
+(3) java -cp scjdClient.jar suncertify.client.Client server_address port
+
+[NOTE] If you choose to use the this start type. Your program will run by using
+the remote database.
+eg.
+   java -cp scjdClient.jar suncertify.client.Client 192.168.1.23 5001
+
+   No matter which start type you select, you still have the choice to reselect
+ the local mode or remote mode by the Database and Option menu.
+
+3.How to use
+
+(1)User interface description
+
+   The main user interface has four parts. From top to end, there are the menu
+ bar, the searching condition input box and the operation buttons, the flights
+ informaiton display area and the status bar.
+
+   In the menu bar there are two top menu items: Database and Option. Database 
+menu items give you the choice to select the database mode(local or remote). 
+Option menu item pops up a subwindow which lets you setup the local and remote 
+database location information.
+
+   You are able to select the origin and destination of flights by using the 
+searching condition input box. There are three operation buttons: "Search", 
+"Display All" and "Book". The "Search" button searches the database by using the
+ current searching condition. The "Display All" button displays all records in 
+the database. The "Book" button pops up a subwindow and displays the record 
+selected in the farther window. You can book seats in this window by selecting 
+one or more seats and then clicking the OK button.
+
+   The flights information display area displays the record(s) selected from 
+the database according to the current searching condition. This area also lets 
+you to select the flight you are interested in.
+
+   The status bar displays the current database mode(local or remote).
+   
+(2)How to setup database location and select the connection modes.
+   
+   a. select the [Option] menu 
+   b. select the [Database Setting] and it will display a [Database Location 
+      Setup] window.
+   c. In the [Database Location Setup] window, input the local database file 
+      path. You can input the database file path directly or by the click the 
+      [File] button to select the file path in the file selection window.
+   d. In the [Database Location Setup] window, input the remote server's address
+      and port.
+   e. Click the [OK] button to save the setting or [Cancel] button to discard 
+      it.
+   f. Select the [Database] menu
+   g. Select the [Local] menu to connect to the local database or select the 
+      [Remote] menu to connect to the remote database.
+
+(3)How to search flights' information
+
+   a. In the [Origination] and [Destination] comboBoxes, select the origination 
+      and destination city. 
+   b. Click the [Search] button.
+   c. The flights information display area will display the flights which meet 
+      the searching condition.
+
+(4)How to book seats
+   
+   a. Select the flight you are interested in.
+   b. Click the [Book] button, it will display a booking window which displays 
+      the available seats information.
+   c. In the booking window, select the seats you want to book, then click [OK]
+      button to book the seats or [Cancel] button to do nothing and close the 
+      booking window.
+
+(5)How to exit the client program
+   
+   a. Select the [Database] menu
+   b. Select the [Exit] menu item
+
+
+********************************************************************************
+*                            Database server guide                             *
+********************************************************************************
+
+1.How to setup
+
+   Copy the scjdServer.jar and the db.db file to any directory you want. 
+
+2.How to run
+
+   Enter the directory which has the scjdServer.jar file. And then type the 
+following command.
+
+   java -cp scjdServer.jar suncertify.server.Server port db_path
+
+[NOTE] If your db.db is not in the same direcotry with the scjdServer.jar. you
+must input the full path of the db.db file.
+
+eg.
+   java -cp scjdServer.jar suncertify.server.Server 5001 e:\db.db
+
+3.How to use
+
+   After the server has been started, there is no other operation needed to the 
+server program. The server program prints log to the screen by default. The log 
+has the four columns. there are <date&time>, <information type>, 
+<Client's address and port> and <the content of requests and responses>. 
+[NOTE] Information type has two values: "I" means Information, "E" means Error.
+
+   By using the log, administrator can find if there any error occurs when server
+is running. The following is an example of the server log.
+:
+:
+2002/09/28 15:21:20 <I> <INIT> Database loaded successfully
+2002/09/28 15:21:21 <I> <INIT> Listening port 5001
+2002/09/28 15:21:21 <I> <INIT> Server started
+2002/09/28 15:21:57 <I> <192.168.3.124:1199> Client connected
+2002/09/28 15:21:57 <I> <192.168.3.124:1199> Request command: getFieldInfo()
+2002/09/28 15:21:57 <I> <192.168.3.124:1199> Response status: ok
+2002/09/28 15:21:57 <I> <192.168.3.124:1199> Request command: criteriaFind(ALL)
+2002/09/28 15:21:57 <I> <192.168.3.124:1199> Response status: ok
+:
+:
+   Press CTRL-C to stop the server program.
+
+
